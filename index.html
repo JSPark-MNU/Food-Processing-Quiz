@@ -1,0 +1,174 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>통조림/레토르트 1문항 퀴즈</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 24px; line-height: 1.5; background: #ffffff;
+    }
+    .card {
+      max-width: 720px; margin: 0 auto;
+      border: 1px solid #ddd; border-radius: 14px;
+      padding: 18px 18px 14px;
+    }
+    h1 { font-size: 18px; margin: 0 0 10px; }
+    .q { font-size: 16px; margin: 10px 0 14px; }
+    .opt {
+      display: block; padding: 10px 12px;
+      border: 1px solid #e5e5e5; border-radius: 10px;
+      margin: 10px 0; cursor: pointer; user-select: none;
+    }
+    .opt:hover { background: #fafafa; }
+    .btn { margin-top: 12px; padding: 10px 14px; border: 0; border-radius: 10px; cursor: pointer; }
+    .btn.primary { background: #111; color: #fff; }
+    .btn.secondary { background: #f1f1f1; }
+    .msg { margin-top: 14px; padding: 12px; border-radius: 12px; display: none; }
+    .ok { background: #e9f8ef; border: 1px solid #bfe9cc; }
+    .bad { background: #fff2f2; border: 1px solid #ffd1d1; }
+    .small { color:#666; font-size: 13px; margin-top: 10px; }
+
+    .photo {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-top: 12px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* ✅ 과제 블록 스타일 추가 */
+    .hw {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .hw h2 {
+      font-size: 14px;
+      margin: 0 0 6px;
+    }
+    .hw ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+      font-size: 13px;
+      color: #222;
+    }
+    .hw li { margin: 4px 0; }
+    .hw .meta {
+      margin-top: 8px;
+      font-size: 12.5px;
+      color: #444;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(0,0,0,0.15);
+    }
+    code {
+      background: rgba(0,0,0,0.06);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>미니 퀴즈 (4지선다 1문항)</h1>
+
+    <div class="q">
+      <b>Q.</b> 저산성 통조림에서 <b>pH 4.6</b>이 중요한 이유로 가장 적절한 것은?
+    </div>
+
+    <form id="quiz">
+      <label class="opt"><input type="radio" name="a" value="A"> A. pH 4.6 이하에서는 지방 산패가 완전히 멈추기 때문이다</label>
+      <label class="opt"><input type="radio" name="a" value="B"> B. pH 4.6 이하에서는 효소가 모두 불활성화되어 멸균이 필요 없기 때문이다</label>
+      <label class="opt"><input type="radio" name="a" value="C"> C. pH 4.6 이하에서는 <i>C. botulinum</i> 포자의 발아/독소 위험이 억제되어, 100°C 수준의 열처리로도 안전성을 확보할 수 있기 때문이다</label>
+      <label class="opt"><input type="radio" name="a" value="D"> D. pH 4.6 이상에서는 수분활성(a<sub>w</sub>)이 자동으로 상승하기 때문이다</label>
+
+      <button type="button" class="btn primary" id="check">정답 확인</button>
+      <button type="button" class="btn secondary" id="reset">다시 풀기</button>
+    </form>
+
+    <!-- ✅ ok 박스: 사진 아래에 과제 추가 -->
+    <div class="msg ok" id="ok">
+      ✅ <b>정답입니다!</b><br/>
+      <span class="small" style="display:block; margin-top:6px;">
+        이처럼 통조림 공정은 ‘온도’의 문제가 아니라,
+        <b>미생물 위험을 정량적으로 제어하는 식품공학적 안전 설계</b>의 결과입니다.
+      </span>
+      <span class="small" style="display:block; margin-top:6px;">
+        하와이의 <b>다이아몬드 헤드</b> 전경을 함께 보며,
+        오늘 다룬 <strong>'통조림의 개념'</strong>을 한 번 더 떠올려보세요!
+      </span>
+
+      <img class="photo" src="waikiki.jpg" alt="Diamond Head">
+
+      <div class="hw">
+        <h2>📌 과제 (다음 주 수업 전까지 / LMS 업로드)</h2>
+        <ol>
+          <li>집/마트에서 통조림 제품 1종 선택</li>
+          <li>제품명/형태(사진), <b>2-piece 또는 3-piece</b> 및 <b>재질 유추</b> (근거 포함)</li>
+          <li><b>산성 식품</b>인지 <b>저산성 식품</b>인지 구분</li>
+          <li>적용되었을 것으로 예상되는 <b>열처리 방식</b> 제시</li>
+          <li><b>C. botulinum</b>과 <b>pH 4.6</b> 기준을 사용해 이유 설명</li>
+          <li>분량: A4 1쪽 이내</li>
+        </ol>
+        <div class="meta">
+          제출 형식: PDF<br/>
+          파일명: <code>학번_식품가공저장학 통조림 과제.pdf</code><br/>
+          제출: LMS 과제 게시판 업로드
+        </div>
+      </div>
+    </div>
+
+    <div class="msg bad" id="bad"></div>
+  </div>
+
+  <script>
+    const checkBtn = document.getElementById('check');
+    const resetBtn = document.getElementById('reset');
+    const okBox = document.getElementById('ok');
+    const badBox = document.getElementById('bad');
+
+    function hideAll() {
+      okBox.style.display = 'none';
+      badBox.style.display = 'none';
+    }
+
+    checkBtn.addEventListener('click', () => {
+      hideAll();
+      const pick = document.querySelector('input[name="a"]:checked');
+
+      if (!pick) {
+        badBox.className = "msg bad";
+        badBox.style.display = 'block';
+        badBox.innerHTML = "❗ <b>선택지를 하나 골라주세요.</b>";
+        return;
+      }
+
+      if (pick.value === 'C') {
+        okBox.style.display = 'block';
+      } else {
+        badBox.className = "msg bad";
+        badBox.style.display = 'block';
+        badBox.innerHTML = `
+          ❌ <b>틀렸습니다.</b> 다시 한번 생각해보세요.<br/>
+          <span class="small">
+            힌트: 저산성 통조림의 핵심은 “<b>포자</b> + <b>밀봉(혐기)</b> + <b>독소</b> 위험”입니다.
+          </span>
+        `;
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      hideAll();
+      const pick = document.querySelector('input[name="a"]:checked');
+      if (pick) pick.checked = false;
+    });
+  </script>
+</body>
+</html>
