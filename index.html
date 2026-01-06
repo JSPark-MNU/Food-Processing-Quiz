@@ -6,11 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>통조림/레토르트 1문항 퀴즈</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; line-height: 1.5; }
-    .card { max-width: 720px; margin: 0 auto; border: 1px solid #ddd; border-radius: 14px; padding: 18px 18px 14px; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 24px; line-height: 1.5; background: #ffffff;
+    }
+    .card {
+      max-width: 720px; margin: 0 auto;
+      border: 1px solid #ddd; border-radius: 14px;
+      padding: 18px 18px 14px;
+    }
     h1 { font-size: 18px; margin: 0 0 10px; }
     .q { font-size: 16px; margin: 10px 0 14px; }
-    .opt { display: block; padding: 10px 12px; border: 1px solid #e5e5e5; border-radius: 10px; margin: 10px 0; cursor: pointer; }
+    .opt {
+      display: block; padding: 10px 12px;
+      border: 1px solid #e5e5e5; border-radius: 10px;
+      margin: 10px 0; cursor: pointer; user-select: none;
+    }
     .opt:hover { background: #fafafa; }
     .btn { margin-top: 12px; padding: 10px 14px; border: 0; border-radius: 10px; cursor: pointer; }
     .btn.primary { background: #111; color: #fff; }
@@ -19,7 +30,11 @@
     .ok { background: #e9f8ef; border: 1px solid #bfe9cc; }
     .bad { background: #fff2f2; border: 1px solid #ffd1d1; }
     .small { color:#666; font-size: 13px; margin-top: 10px; }
-    .code { font-weight: 700; font-size: 18px; letter-spacing: .5px; }
+    .photo {
+      width: 100%; max-height: 320px; object-fit: cover;
+      border-radius: 12px; margin-top: 12px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
   </style>
 </head>
 <body>
@@ -40,20 +55,17 @@
       <button type="button" class="btn secondary" id="reset">다시 풀기</button>
     </form>
 
-    <div class="msg ok" id="ok">
-      ✅ <b>정답입니다!</b><br/>
-      화면을 진행자에게 보여주시면 <b>키프티콘</b>을 드립니다.<br/><br/>
-      <span class="small">※ 쿠폰번호를 웹에서 자동 공개하면 유출될 수 있어, 현장 확인 후 지급 방식으로 운영합니다.</span>
-    </div>
+<div class="msg ok" id="ok">
+  ✅ <b>정답입니다!</b><br/>
+  <span class="small" style="display:block; margin-top:6px;">
+    이처럼 통조림 공정은 ‘온도’의 문제가 아니라, <b>미생물 위험을 정량적으로 제어하는 식품공학적 안전 설계</b>의 결과입니다.
+  </span>
+  멋있는 <b>와이키키 해변</b>을 보고 가세요!
+  <img class="photo" src="waikiki.jpg" alt="Waikiki Beach" />
+</div>
 
-    <div class="msg bad" id="bad">
-      ❌ <b>오답입니다.</b> 다시 한 번 선택해보세요.<br/>
-      <span class="small">힌트: 저산성 식품의 핵심 리스크는 “포자 + 밀봉(혐기) + 독소”입니다.</span>
-    </div>
 
-    <div class="small">
-      (운영 팁) 시간 없으면 “정답자만 손 들어주세요” 대신, 이 화면을 보여주는 방식이 더 깔끔합니다.
-    </div>
+    <div class="msg bad" id="bad"></div>
   </div>
 
   <script>
@@ -70,15 +82,25 @@
     checkBtn.addEventListener('click', () => {
       hideAll();
       const pick = document.querySelector('input[name="a"]:checked');
+
       if (!pick) {
+        badBox.className = "msg bad";
         badBox.style.display = 'block';
-        badBox.innerHTML = "❗ <b>선택지를 먼저 골라주세요.</b>";
+        badBox.innerHTML = "❗ <b>선택지를 하나 골라주세요.</b>";
         return;
       }
+
       if (pick.value === 'C') {
         okBox.style.display = 'block';
       } else {
+        badBox.className = "msg bad";
         badBox.style.display = 'block';
+        badBox.innerHTML = `
+          ❌ <b>틀렸습니다.</b> 다시 한번 생각해보세요.<br/>
+          <span class="small">
+            힌트: 저산성 통조림의 핵심은 “<b>포자</b> + <b>밀봉(혐기)</b> + <b>독소</b> 위험”입니다.
+          </span>
+        `;
       }
     });
 
